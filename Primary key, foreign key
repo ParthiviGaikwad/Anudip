@@ -1,0 +1,267 @@
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| aids               |
+| andp               |
+| bikedb             |
+| information_schema |
+| job                |
+| mysql              |
+| parthivi           |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> use andp
+Database changed
+mysql> create table studentInfo
+    -> (
+    -> rollNo int primary key
+    -> ,
+    -> studentName varchar(256),
+    -> course varchar(256)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into studentInfo
+    -> Values( 18, "Parthivi", "AIDS");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into studentInfo
+    -> Values( 28, "Yash", "AIDS");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentInfo
+    -> Values( 33, "Parth", "AIDS");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentInfo
+    -> Values( 38, "Pragati", "AIDS");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into studentInfo
+    -> Values( 48, "Arya", "AIDS");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table marksheet
+    -> (
+    -> marksheet_id int primary key,
+    -> total_marks int,
+    -> roll_no int,
+    -> foreign key(roll_no) references studentInfo(rollNo)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into marksheet
+    -> values(101, 500, 38);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marksheet
+    -> values(102, 541, 18);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marksheet
+    -> values(103, 670, 48);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marksheet
+    -> values(104, 490, 28);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marksheet
+    -> values(105, 647, 33);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from marksheet
+    -> ;
++--------------+-------------+---------+
+| marksheet_id | total_marks | roll_no |
++--------------+-------------+---------+
+|          101 |         500 |      38 |
+|          102 |         541 |      18 |
+|          103 |         670 |      48 |
+|          104 |         490 |      28 |
+|          105 |         647 |      33 |
++--------------+-------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from studentInfo;
++--------+-------------+--------+
+| rollNo | studentName | course |
++--------+-------------+--------+
+|     18 | Parthivi    | AIDS   |
+|     28 | Yash        | AIDS   |
+|     33 | Parth       | AIDS   |
+|     38 | Pragati     | AIDS   |
+|     48 | Arya        | AIDS   |
++--------+-------------+--------+
+5 rows in set (0.02 sec)
+
+mysql> create table Customers (custId int primary key,Name varchar (256),Address varchar (256));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create  table product(productid int primary key, productname varchar(256) ,price int , cust_ID int, foreign key (cust_ID) references Customers (custId));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into Customers
+    -> values(101, "Parthivi", "Kalamboli")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Customers
+    -> values(102, "Aleena", "Panvel");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Customers
+    -> values(103, "Meenakshi", "Kerala");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product
+    -> values (9901, "NEET Books", 6700, 103);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into product
+    -> values (9902, "Paintbrushes", 200, 102);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product
+    -> values (9903, "Laptop cleaner", 200, 101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product
+    -> values (9904, "Pens", 100, 103);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product
+    -> values (9905, "Plastic covers", 150, 102);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table cust(
+    -> customer_id int primary key,
+    -> contact_name varchar (256),
+    -> company_name varchar (256),
+    -> contact_email varchar (256),
+    -> address varchar (256),
+    -> city varchar (256),
+    -> country varchar (256)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table category(
+    -> category_id int primary key,
+    -> name varchar (256)
+    -> description varchar (256)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'description varchar (256)
+)' at line 4
+mysql> create table category(
+    -> category_id int primary key,
+    -> name varchar (256)
+    -> description varchar (256)
+    ->
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'description varchar (256)' at line 4
+mysql> create table category(
+    -> category_id int primary key,
+    -> name varchar (256),
+    -> description varchar (256)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>
+mysql> select studentInfo.studentName , marksheet.total_marks
+    -> from studentInfo
+    -> inner join marksheet ON studentInfo.rollNo= marksheet.roll_no
+    -> ;
++-------------+-------------+
+| studentName | total_marks |
++-------------+-------------+
+| Pragati     |         500 |
+| Parthivi    |         541 |
+| Arya        |         670 |
+| Yash        |         490 |
+| Parth       |         647 |
++-------------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from customers
+    -> ;
++--------+-----------+-----------+
+| custId | Name      | Address   |
++--------+-----------+-----------+
+|    101 | Parthivi  | Kalamboli |
+|    102 | Aleena    | Panvel    |
+|    103 | Meenakshi | Kerala    |
++--------+-----------+-----------+
+3 rows in set (0.01 sec)
+
+mysql> select * from product;
++-----------+----------------+-------+---------+
+| productid | productname    | price | cust_ID |
++-----------+----------------+-------+---------+
+|      9901 | NEET Books     |  6700 |     103 |
+|      9902 | Paintbrushes   |   200 |     102 |
+|      9903 | Laptop cleaner |   200 |     101 |
+|      9904 | Pens           |   100 |     103 |
+|      9905 | Plastic covers |   150 |     102 |
++-----------+----------------+-------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select product.productname, customers.Name
+    -> from product
+    -> inner join on
+    -> product.custID=customers.custId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on
+product.custID=customers.custId' at line 3
+mysql> select product.productname, customers.Name
+    -> from product
+    -> inner join on product
+    -> product.custID=customers.custId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on product
+product.custID=customers.custId' at line 3
+mysql> select product.productname, customers.Name
+    -> from product
+    -> inner join on customers
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on customers' at line 3
+mysql> select product.productname, customers.Name
+    -> select product.productname, customers.Name
+    -> from product
+    -> inner join product on
+    -> product.custID=customers.custId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select product.productname, customers.Name
+from product
+inner join product on
+p' at line 2
+mysql> select product.productname, customers.Name
+    -> from customers
+    -> inner join product on
+    -> product.custID=customers.custId;
+ERROR 1054 (42S22): Unknown column 'product.custID' in 'on clause'
+mysql> select product.productname, customers.Name
+    -> from product
+    -> inner join product on
+    -> product.cust_ID=customers.custId;
+ERROR 1066 (42000): Not unique table/alias: 'product'
+mysql> select product.productname, customers.Name
+    -> from customers
+    -> inner join product on
+    -> product.cust_ID=customers.custId;
++----------------+-----------+
+| productname    | Name      |
++----------------+-----------+
+| Laptop cleaner | Parthivi  |
+| Paintbrushes   | Aleena    |
+| Plastic covers | Aleena    |
+| NEET Books     | Meenakshi |
+| Pens           | Meenakshi |
++----------------+-----------+
+5 rows in set (0.01 sec)
+
+mysql>
