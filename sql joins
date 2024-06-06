@@ -1,0 +1,558 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use andp
+Database changed
+mysql> select * from employee
+    -> ;
++-----------+-------+------------+---------+-----------+
+| empname   | empid | contact    | salary  | city      |
++-----------+-------+------------+---------+-----------+
+| Parthivi  |    18 | 1234567890 | 1000000 | kalamboli |
+| Siddharth |    19 |    9820481 |   87900 | Kalamboli |
+| Nainesh   |    20 |    9899481 |  100000 | Kalamboli |
+| Yuvraj    |    22 |  987456323 | 7900000 | Chembur   |
+| Khushi    |    23 |  654321987 | 6588000 | Mulund    |
+| Anushka   |    27 |  985236741 | 1000000 | Vashi     |
+| Yash      |    28 | 9892650547 | 1000000 | Panvel    |
+| Sahil     |    31 | 5789312485 | 2200000 | Andheri   |
+| Parth     |    33 | 2046870218 |  750000 | Kharghar  |
+| Pragati   |    38 |   35789246 | 8700000 | Kharghar  |
+| Arya      |    47 |  987031859 | 1000000 | Nerul     |
+| Imaginary |    96 |   75395182 | 1000000 | Dholakpur |
++-----------+-------+------------+---------+-----------+
+12 rows in set (0.03 sec)
+
+mysql> create table dept
+    -> (
+    -> d_id in primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in primary key' at line 3
+mysql> create table dept
+    -> (
+    -> d_id in primary key,
+    -> d_name varchar(256)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in primary key,
+d_name varchar(256)
+)' at line 3
+mysql> create table dept
+    -> (
+    -> d_id int primary key,
+    -> d_name varchar(256)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into dept
+    -> values (501, "engineering"),
+    -> (502, "marketing"),
+    -> (503, "PR"),
+    -> (504, "Sales");
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee
+    -> add column dept_name varchar(256);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++------+-------------+
+| d_id | d_name      |
++------+-------------+
+|  501 | engineering |
+|  502 | marketing   |
+|  503 | PR          |
+|  504 | Sales       |
++------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE employees SET dept_id = 501 WHERE empname IN ('Parthivi', 'Siddharth', 'Nainesh', 'Yuvraj');
+ERROR 1146 (42S02): Table 'andp.employees' doesn't exist
+mysql> UPDATE employees SET dept_id = 502 WHERE empname IN ('Khushi', 'Anushka');
+ERROR 1146 (42S02): Table 'andp.employees' doesn't exist
+mysql> UPDATE employees SET dept_id = 503 WHERE empname IN ('Yash', 'Sahil');
+ERROR 1146 (42S02): Table 'andp.employees' doesn't exist
+mysql> UPDATE employees SET dept_id = 504 WHERE empname IN ('Parth', 'Pragati', 'Arya', 'Imaginary');
+ERROR 1146 (42S02): Table 'andp.employees' doesn't exist
+mysql> UPDATE employee SET dept_id = 501 WHERE empname IN ('Parthivi', 'Siddharth', 'Nainesh', 'Yuvraj');
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'field list'
+mysql> UPDATE employee SET dept_id = 502 WHERE empname IN ('Khushi', 'Anushka');
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'field list'
+mysql> UPDATE employee SET dept_id = 503 WHERE empname IN ('Yash', 'Sahil');
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'field list'
+mysql> UPDATE employee SET dept_id = 504 WHERE empname IN ('Parth', 'Pragati', 'Arya', 'Imaginary');
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'field list'
+mysql> alter table employee
+    -> rename dept_name dept_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dept_id' at line 2
+mysql> alter table employee
+    -> rename dept_name to dept_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to dept_id' at line 2
+mysql> alter table employee
+    -> rename column dept_name to dept_id;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE employee SET dept_id = 501 WHERE empname IN ('Parthivi', 'Siddharth', 'Nainesh', 'Yuvraj');
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> UPDATE employee SET dept_id = 502 WHERE empname IN ('Khushi', 'Anushka');
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE employee SET dept_id = 503 WHERE empname IN ('Yash', 'Sahil');
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE employee SET dept_id = 504 WHERE empname IN ('Parth', 'Pragati', 'Arya', 'Imaginary');
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from employee
+    -> ;
++-----------+-------+------------+---------+-----------+---------+
+| empname   | empid | contact    | salary  | city      | dept_id |
++-----------+-------+------------+---------+-----------+---------+
+| Parthivi  |    18 | 1234567890 | 1000000 | kalamboli | 501     |
+| Siddharth |    19 |    9820481 |   87900 | Kalamboli | 501     |
+| Nainesh   |    20 |    9899481 |  100000 | Kalamboli | 501     |
+| Yuvraj    |    22 |  987456323 | 7900000 | Chembur   | 501     |
+| Khushi    |    23 |  654321987 | 6588000 | Mulund    | 502     |
+| Anushka   |    27 |  985236741 | 1000000 | Vashi     | 502     |
+| Yash      |    28 | 9892650547 | 1000000 | Panvel    | 503     |
+| Sahil     |    31 | 5789312485 | 2200000 | Andheri   | 503     |
+| Parth     |    33 | 2046870218 |  750000 | Kharghar  | 504     |
+| Pragati   |    38 |   35789246 | 8700000 | Kharghar  | 504     |
+| Arya      |    47 |  987031859 | 1000000 | Nerul     | 504     |
+| Imaginary |    96 |   75395182 | 1000000 | Dholakpur | 504     |
++-----------+-------+------------+---------+-----------+---------+
+12 rows in set (0.00 sec)
+
+mysql> select employee.empname, dept.d_name
+    -> from employee
+    -> inner join dept
+    -> on employee.dept_id=dept.d_id;
++-----------+-------------+
+| empname   | d_name      |
++-----------+-------------+
+| Parthivi  | engineering |
+| Siddharth | engineering |
+| Nainesh   | engineering |
+| Yuvraj    | engineering |
+| Khushi    | marketing   |
+| Anushka   | marketing   |
+| Yash      | PR          |
+| Sahil     | PR          |
+| Parth     | Sales       |
+| Pragati   | Sales       |
+| Arya      | Sales       |
+| Imaginary | Sales       |
++-----------+-------------+
+12 rows in set (0.01 sec)
+
+mysql> select employee.empname, dept.d_name
+    -> from employee
+    -> left join dept
+    -> on employee.dept_id=dept.d_id;
++-----------+-------------+
+| empname   | d_name      |
++-----------+-------------+
+| Parthivi  | engineering |
+| Siddharth | engineering |
+| Nainesh   | engineering |
+| Yuvraj    | engineering |
+| Khushi    | marketing   |
+| Anushka   | marketing   |
+| Yash      | PR          |
+| Sahil     | PR          |
+| Parth     | Sales       |
+| Pragati   | Sales       |
+| Arya      | Sales       |
+| Imaginary | Sales       |
++-----------+-------------+
+12 rows in set (0.01 sec)
+
+mysql> INSERT INTO employee
+    -> values("Mahesh",89, 98638576,89999,"Jammu");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO employee( empname, empid, contact, salary, city)
+    -> values("Mahesh",89, 98638576,89999,"Jammu");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select employee.empname, dept.d_name
+    -> from employee
+    -> left join dept
+    -> on employee.dept_id=dept.d_id;
++-----------+-------------+
+| empname   | d_name      |
++-----------+-------------+
+| Parthivi  | engineering |
+| Siddharth | engineering |
+| Nainesh   | engineering |
+| Yuvraj    | engineering |
+| Khushi    | marketing   |
+| Anushka   | marketing   |
+| Yash      | PR          |
+| Sahil     | PR          |
+| Parth     | Sales       |
+| Pragati   | Sales       |
+| Arya      | Sales       |
+| Mahesh    | NULL        |
+| Imaginary | Sales       |
++-----------+-------------+
+13 rows in set (0.01 sec)
+
+mysql> select employee.empname, employee.empid, employee.contact, employee.salary, dept.d_namefrom employeeleft join depton employee.dept_id=dept.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'join depton employee.dept_id=dept.d_id' at line 1
+mysql> select employee.empname, employee.empid, employee.contact, employee.salary, dept.d_namefrom employee left join dept on employee.dept_id=dept.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'left join dept on employee.dept_id=dept.d_id' at line 1
+mysql> select employee.empname, employee.empid, employee.contact, employee.salary, dept.d_name
+    -> from employee
+    -> left join dept on employee.dept_id=dept.d_id;
++-----------+-------+------------+---------+-------------+
+| empname   | empid | contact    | salary  | d_name      |
++-----------+-------+------------+---------+-------------+
+| Parthivi  |    18 | 1234567890 | 1000000 | engineering |
+| Siddharth |    19 |    9820481 |   87900 | engineering |
+| Nainesh   |    20 |    9899481 |  100000 | engineering |
+| Yuvraj    |    22 |  987456323 | 7900000 | engineering |
+| Khushi    |    23 |  654321987 | 6588000 | marketing   |
+| Anushka   |    27 |  985236741 | 1000000 | marketing   |
+| Yash      |    28 | 9892650547 | 1000000 | PR          |
+| Sahil     |    31 | 5789312485 | 2200000 | PR          |
+| Parth     |    33 | 2046870218 |  750000 | Sales       |
+| Pragati   |    38 |   35789246 | 8700000 | Sales       |
+| Arya      |    47 |  987031859 | 1000000 | Sales       |
+| Mahesh    |    89 |   98638576 |   89999 | NULL        |
+| Imaginary |    96 |   75395182 | 1000000 | Sales       |
++-----------+-------+------------+---------+-------------+
+13 rows in set (0.00 sec)
+
+mysql> select employee.empname, employee.empid, employee.contact, employee.salary, dept.d_name
+    -> from employee
+    -> right join dept on employee.dept_id=dept.d_id;
++-----------+-------+------------+---------+-------------+
+| empname   | empid | contact    | salary  | d_name      |
++-----------+-------+------------+---------+-------------+
+| Yuvraj    |    22 |  987456323 | 7900000 | engineering |
+| Nainesh   |    20 |    9899481 |  100000 | engineering |
+| Siddharth |    19 |    9820481 |   87900 | engineering |
+| Parthivi  |    18 | 1234567890 | 1000000 | engineering |
+| Anushka   |    27 |  985236741 | 1000000 | marketing   |
+| Khushi    |    23 |  654321987 | 6588000 | marketing   |
+| Sahil     |    31 | 5789312485 | 2200000 | PR          |
+| Yash      |    28 | 9892650547 | 1000000 | PR          |
+| Imaginary |    96 |   75395182 | 1000000 | Sales       |
+| Arya      |    47 |  987031859 | 1000000 | Sales       |
+| Pragati   |    38 |   35789246 | 8700000 | Sales       |
+| Parth     |    33 | 2046870218 |  750000 | Sales       |
++-----------+-------+------------+---------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select employee.empname, employee.empid, employee.contact, employee.salary, dept.d_name
+    -> from employee
+    -> outer join dept on employee.dept_id=dept.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join dept on employee.dept_id=dept.d_id' at line 3
+mysql> create table manager( id int primary key,man_name varchar (256),dept_id int );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table project(
+    -> proj_id int primary key,
+    -> project_name varchar(256),
+    -> manager int,
+    -> deadline date
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into manager ( id,man_name,dept_id )
+    -> values (1501, "Rose", 501), (1502, "Lily", 502), (1503, "Jasmine", 503),(1504, "Marie", 504)
+    -> ;
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into project ( proj_id ,project_name, manager, deadline )
+    -> values (1201, "Calender app", 504, "2024-07-01"), (1202, "Food delivery app bug remove", 503, "2024-08-03"), (1203, "Remote learning app", 502, "2024-06-30"), (1204, "Game model", 501, "2024-09-05"),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql>
+mysql> insert into project ( proj_id ,project_name, manager, deadline )
+    -> values (1201, "Calender app", 504, "2024-07-01"), (1202, "Food delivery app bug remove", 503, "2024-08-03"), (1203, "Remote learning app", 502, "2024-06-30"), (1204, "Game model", 501, "2024-09-05");
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> insert into project ( proj_id ,project_name, deadline )
+    -> values (1205, "File download app","2024-09-30"), (1206, "Weather app","2024-08-20");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> values (1205, "File download app","2024-09-30"), (1206, "Weather app","2024-08-20");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1205, "File download app","2024-09-30"), (1206, "Weather app","2024-08-20")' at line 1
+mysql>
+mysql> insert into project ( proj_id ,project_name, deadline )
+    -> values (1205, "File download app","2024-09-30"), (1206, "Weather app","2024-08-20");
+ERROR 1062 (23000): Duplicate entry '1205' for key 'project.PRIMARY'
+mysql> select * from manager;
++------+----------+---------+
+| id   | man_name | dept_id |
++------+----------+---------+
+| 1501 | Rose     |     501 |
+| 1502 | Lily     |     502 |
+| 1503 | Jasmine  |     503 |
+| 1504 | Marie    |     504 |
++------+----------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select * from project;
++---------+------------------------------+---------+------------+
+| proj_id | project_name                 | manager | deadline   |
++---------+------------------------------+---------+------------+
+|    1201 | Calender app                 |     504 | 2024-07-01 |
+|    1202 | Food delivery app bug remove |     503 | 2024-08-03 |
+|    1203 | Remote learning app          |     502 | 2024-06-30 |
+|    1204 | Game model                   |     501 | 2024-09-05 |
+|    1205 | File download app            |    NULL | 2024-09-30 |
+|    1206 | Weather app                  |    NULL | 2024-08-20 |
++---------+------------------------------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> insert into project ( proj_id ,project_name, manager, deadline )
+    -> values (1207, "Mobile browser", 504, "2024-07-03"), (1208, "Tik Tac Toe app", 503, "2024-08-13"), (1209, "Race game app", 502, "2024-06-29"), (1210, "Dress up game app", 501, "2024-09-15");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select manager.man_name, project.project_name, project.deadline
+    -> from project
+    -> left join manager on
+    -> manager.id=project.manager;
++----------+------------------------------+------------+
+| man_name | project_name                 | deadline   |
++----------+------------------------------+------------+
+| NULL     | Calender app                 | 2024-07-01 |
+| NULL     | Food delivery app bug remove | 2024-08-03 |
+| NULL     | Remote learning app          | 2024-06-30 |
+| NULL     | Game model                   | 2024-09-05 |
+| NULL     | File download app            | 2024-09-30 |
+| NULL     | Weather app                  | 2024-08-20 |
+| NULL     | Mobile browser               | 2024-07-03 |
+| NULL     | Tik Tac Toe app              | 2024-08-13 |
+| NULL     | Race game app                | 2024-06-29 |
+| NULL     | Dress up game app            | 2024-09-15 |
++----------+------------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update project
+    -> set manager= 1504 where proj_id=1201;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1503 where proj_id=1202;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1502 where proj_id=1203;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1501 where proj_id=1204;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= NULL where proj_id=1205;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update project
+    -> set manager= NULL where proj_id=1206;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from project;
++---------+------------------------------+---------+------------+
+| proj_id | project_name                 | manager | deadline   |
++---------+------------------------------+---------+------------+
+|    1201 | Calender app                 |    1504 | 2024-07-01 |
+|    1202 | Food delivery app bug remove |    1503 | 2024-08-03 |
+|    1203 | Remote learning app          |    1502 | 2024-06-30 |
+|    1204 | Game model                   |    1501 | 2024-09-05 |
+|    1205 | File download app            |    NULL | 2024-09-30 |
+|    1206 | Weather app                  |    NULL | 2024-08-20 |
+|    1207 | Mobile browser               |     504 | 2024-07-03 |
+|    1208 | Tik Tac Toe app              |     503 | 2024-08-13 |
+|    1209 | Race game app                |     502 | 2024-06-29 |
+|    1210 | Dress up game app            |     501 | 2024-09-15 |
++---------+------------------------------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update project
+    -> set manager= 1504 where proj_id=1207;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1503 where proj_id=1208;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1502 where proj_id=1209;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update project
+    -> set manager= 1501 where proj_id=1210;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from project;
++---------+------------------------------+---------+------------+
+| proj_id | project_name                 | manager | deadline   |
++---------+------------------------------+---------+------------+
+|    1201 | Calender app                 |    1504 | 2024-07-01 |
+|    1202 | Food delivery app bug remove |    1503 | 2024-08-03 |
+|    1203 | Remote learning app          |    1502 | 2024-06-30 |
+|    1204 | Game model                   |    1501 | 2024-09-05 |
+|    1205 | File download app            |    NULL | 2024-09-30 |
+|    1206 | Weather app                  |    NULL | 2024-08-20 |
+|    1207 | Mobile browser               |    1504 | 2024-07-03 |
+|    1208 | Tik Tac Toe app              |    1503 | 2024-08-13 |
+|    1209 | Race game app                |    1502 | 2024-06-29 |
+|    1210 | Dress up game app            |    1501 | 2024-09-15 |
++---------+------------------------------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from manager;
++------+----------+---------+
+| id   | man_name | dept_id |
++------+----------+---------+
+| 1501 | Rose     |     501 |
+| 1502 | Lily     |     502 |
+| 1503 | Jasmine  |     503 |
+| 1504 | Marie    |     504 |
++------+----------+---------+
+4 rows in set (0.01 sec)
+
+mysql> set manager= 1502 where proj_id=1209;select manager.man_name, project.project_name, project.deadline
+ERROR 1193 (HY000): Unknown system variable 'manager'
+    -> from project
+    -> left join manager on
+    -> manager.id=project.manager;
++----------+------------------------------+------------+
+| man_name | project_name                 | deadline   |
++----------+------------------------------+------------+
+| Marie    | Calender app                 | 2024-07-01 |
+| Jasmine  | Food delivery app bug remove | 2024-08-03 |
+| Lily     | Remote learning app          | 2024-06-30 |
+| Rose     | Game model                   | 2024-09-05 |
+| NULL     | File download app            | 2024-09-30 |
+| NULL     | Weather app                  | 2024-08-20 |
+| Marie    | Mobile browser               | 2024-07-03 |
+| Jasmine  | Tik Tac Toe app              | 2024-08-13 |
+| Lily     | Race game app                | 2024-06-29 |
+| Rose     | Dress up game app            | 2024-09-15 |
++----------+------------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select manager.man_name, project.project_name, project.deadline
+    -> from project
+    -> left join manager on
+    -> manager.id=project.manager;
++----------+------------------------------+------------+
+| man_name | project_name                 | deadline   |
++----------+------------------------------+------------+
+| Marie    | Calender app                 | 2024-07-01 |
+| Jasmine  | Food delivery app bug remove | 2024-08-03 |
+| Lily     | Remote learning app          | 2024-06-30 |
+| Rose     | Game model                   | 2024-09-05 |
+| NULL     | File download app            | 2024-09-30 |
+| NULL     | Weather app                  | 2024-08-20 |
+| Marie    | Mobile browser               | 2024-07-03 |
+| Jasmine  | Tik Tac Toe app              | 2024-08-13 |
+| Lily     | Race game app                | 2024-06-29 |
+| Rose     | Dress up game app            | 2024-09-15 |
++----------+------------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select manager.man_name, project.project_name, project.deadline
+    -> from project
+    -> right join manager on
+    -> manager.id=project.manager;
++----------+------------------------------+------------+
+| man_name | project_name                 | deadline   |
++----------+------------------------------+------------+
+| Rose     | Dress up game app            | 2024-09-15 |
+| Rose     | Game model                   | 2024-09-05 |
+| Lily     | Race game app                | 2024-06-29 |
+| Lily     | Remote learning app          | 2024-06-30 |
+| Jasmine  | Tik Tac Toe app              | 2024-08-13 |
+| Jasmine  | Food delivery app bug remove | 2024-08-03 |
+| Marie    | Mobile browser               | 2024-07-03 |
+| Marie    | Calender app                 | 2024-07-01 |
++----------+------------------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from dept;
++------+-------------+
+| d_id | d_name      |
++------+-------------+
+|  501 | engineering |
+|  502 | marketing   |
+|  503 | PR          |
+|  504 | Sales       |
++------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT manager.man_name, project.project_name, project.deadline, dept.d_name
+    -> FROM project
+    -> RIGHT JOIN manager ON manager.id = project.manager
+    -> LEFT JOIN dept ON manager.dept_id = dept.d_id;
++----------+------------------------------+------------+-------------+
+| man_name | project_name                 | deadline   | d_name      |
++----------+------------------------------+------------+-------------+
+| Rose     | Dress up game app            | 2024-09-15 | engineering |
+| Rose     | Game model                   | 2024-09-05 | engineering |
+| Lily     | Race game app                | 2024-06-29 | marketing   |
+| Lily     | Remote learning app          | 2024-06-30 | marketing   |
+| Jasmine  | Tik Tac Toe app              | 2024-08-13 | PR          |
+| Jasmine  | Food delivery app bug remove | 2024-08-03 | PR          |
+| Marie    | Mobile browser               | 2024-07-03 | Sales       |
+| Marie    | Calender app                 | 2024-07-01 | Sales       |
++----------+------------------------------+------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT manager.man_name, project.project_name, project.deadline, dept.d_nameFROM projectRIGHT JOIN manager ON manager.id = project.manager, manager.dept_id = dept.d_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN manager ON manager.id = project.manager, manager.dept_id = dept.d_id' at line 1
+mysql> SELECT e.empname, d.d_name, m.man_name, p.project_name
+    -> from employee e
+    -> left join manager m
+    -> on ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> SELECT e.empname, d.d_name, m.man_name, p.project_name
+    -> left join manager m
+    -> left join manager m;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'left join manager m
+left join manager m' at line 2
+mysql> SELECT e.empname, d.d_name, m.man_name, p.project_name
+    -> from employee e
+    -> left join dept d
+    -> on e.dept_id=d.id
+    -> left join projects p
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 5
+mysql>
