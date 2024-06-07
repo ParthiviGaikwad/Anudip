@@ -1,0 +1,794 @@
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use andp
+Database changed
+mysql> create table studentdb
+    -> (
+    -> ROLL_NO INT,
+    -> NAME VARCHAR (100),
+    -> ADDRESS VARCHAR (256),
+    -> PHONE INT,
+    -> AGE INT
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> ALTER TABLE studentdb
+    -> modify ROLL_NO int primary KEY;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE studentdb
+    -> modify PHONE int not null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Insert into studentdb
+    -> Values(2002, "Karan", "Kamother, Sec 6", 98750294, 20),
+    -> (2003, "Manav", "Navde, A18", 29305968, 20),
+    -> (2001, "Regal", "Kalamboli", Sec 10", 99524621, 21),
+    "> (2004, "Jay", "Kalamboli, Sec 9", 963852741, 19),
+    "> (2005, "Rishabh", "Kalamboli, Sec 12", 258147369, 19);
+    "> ;
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    ">
+    "> ;;
+    "> ;;;;;;;;;;;;;
+    ">
+    ">
+    ">
+    "> "
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10", 99524621, 21),
+(2004, "Jay", "Kalamboli, Sec 9", 963852741, 19),
+(2005, "' at line 4
+mysql> INSERT INTO studentdb
+    -> VALUES
+    ->     (2002, 'Karan', 'Kamother, Sec 6', 98750294, 20),
+    ->     (2003, 'Manav', 'Navde, A18', 29305968, 20),
+    ->     (2001, 'Regal', 'Kalamboli, Sec 10', 99524621, 21),
+    ->     (2004, 'Jay', 'Kalamboli, Sec 9', 963852741, 19),
+    ->     (2005, 'Rishabh', 'Kalamboli, Sec 12', 258147369, 19);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> Select * from studentdb;
++---------+---------+-------------------+-----------+------+
+| ROLL_NO | NAME    | ADDRESS           | PHONE     | AGE  |
++---------+---------+-------------------+-----------+------+
+|    2001 | Regal   | Kalamboli, Sec 10 |  99524621 |   21 |
+|    2002 | Karan   | Kamother, Sec 6   |  98750294 |   20 |
+|    2003 | Manav   | Navde, A18        |  29305968 |   20 |
+|    2004 | Jay     | Kalamboli, Sec 9  | 963852741 |   19 |
+|    2005 | Rishabh | Kalamboli, Sec 12 | 258147369 |   19 |
++---------+---------+-------------------+-----------+------+
+5 rows in set (0.01 sec)
+
+mysql> Select * from studentdb
+    -> order by AGE;
++---------+---------+-------------------+-----------+------+
+| ROLL_NO | NAME    | ADDRESS           | PHONE     | AGE  |
++---------+---------+-------------------+-----------+------+
+|    2004 | Jay     | Kalamboli, Sec 9  | 963852741 |   19 |
+|    2005 | Rishabh | Kalamboli, Sec 12 | 258147369 |   19 |
+|    2002 | Karan   | Kamother, Sec 6   |  98750294 |   20 |
+|    2003 | Manav   | Navde, A18        |  29305968 |   20 |
+|    2001 | Regal   | Kalamboli, Sec 10 |  99524621 |   21 |
++---------+---------+-------------------+-----------+------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT DISTINCT(AGE) FROM studentdb;
++------+
+| AGE  |
++------+
+|   21 |
+|   20 |
+|   19 |
++------+
+3 rows in set (0.00 sec)
+
+mysql> create table BookInformation
+    -> (
+    -> Author_first_name varchar(256);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table BookInformation
+    -> (
+    -> Author_first_name varchar(256),
+    -> Author_surname_name varchar(256),
+    -> Book_name varchar(256)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> Insert into BookInformation
+    -> Values("Colleen", "Hoover", "Ugly Love"),
+    -> ("Colleen", "Hoover", "It Ends with Us"),
+    -> ("Colleen", "Hoover", "Verity"),
+    -> ("Colleen", "Hoover", "It starts with Us"),
+    -> ("Colleen", "Hoover", "November 9"),
+    -> ("Colleen", "Hoover", "All Your Perfects"),
+    -> ("Colleen", "Hoover", "Too late"),
+    -> ("Colleen", "Hoover", "Confess"),
+    -> ("Colleen", "Hoover", "Never Never"),
+    -> ("Colleen", "Hoover", "Slammed");
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> Insert into BookInformation
+    -> values ("J.K.", "Rowling", "Harry Potter and the Philosopher's Stone"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Chamber of Secrets"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Prisoner of Azkaban"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Goblet of Fire"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Order of the Phoenix"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Half-Blood Prince"),
+    -> ("J.K.", "Rowling", "Harry Potter and the Deathly Hallows");
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO BookInformation (Author_first_name, Author_surname_name, Book_name)
+    -> VALUES
+    ->     ('Agatha', 'Christie', 'Murder on the Orient Express'),
+    ->     ('Agatha', 'Christie', 'The Mysterious Affair at Styles'),
+    ->     ('Agatha', 'Christie', 'The ABC Murders'),
+    ->     ('Agatha', 'Christie', 'Death on the Nile'),
+    ->     ('Agatha', 'Christie', 'And Then There Were None'),
+    ->     ('Agatha', 'Christie', 'The Murder at the Vicarage');
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO BookInformation (Author_first_name, Author_surname_name, Book_name)
+    -> VALUES
+    ->     ('Stephen', 'King', 'Carrie'),
+    ->     ('Stephen', 'King', 'The Shining'),
+    ->     ('Stephen', 'King', 'It'),
+    ->     ('Stephen', 'King', 'Misery'),
+    ->     ('Stephen', 'King', 'The Stand'),
+    ->     ('Stephen', 'King', 'Pet Sematary'),
+    ->     ('Stephen', 'King', '11/22/63'),
+    ->     ('Stephen', 'King', 'The Dark Tower: The Gunslinger'),
+    ->     ('Stephen', 'King', 'Under the Dome'),
+    ->     ('Stephen', 'King', 'Doctor Sleep');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO BookInformation (Author_first_name, Author_surname_name, Book_name)
+    -> VALUES
+    ->     ('Chetan', 'Bhagat', 'Five Point Someone'),
+    ->     ('Chetan', 'Bhagat', 'One Night at the Call Center'),
+    ->     ('Chetan', 'Bhagat', 'The 3 Mistakes of My Life'),
+    ->     ('Chetan', 'Bhagat', '2 States: The Story of My Marriage'),
+    ->     ('Chetan', 'Bhagat', 'Revolution 2020: Love, Corruption, Ambition'),
+    ->     ('Chetan', 'Bhagat', 'What Young India Wants'),
+    ->     ('Chetan', 'Bhagat', 'Half Girlfriend'),
+    ->     ('Chetan', 'Bhagat', 'Making India Awesome'),
+    ->     ('Chetan', 'Bhagat', 'One Indian Girl'),
+    ->     ('Chetan', 'Bhagat', 'The Girl in Room 105');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> Select * from BookInformation;
++-------------------+---------------------+---------------------------------------------+
+| Author_first_name | Author_surname_name | Book_name                                   |
++-------------------+---------------------+---------------------------------------------+
+| Colleen           | Hoover              | Ugly Love                                   |
+| Colleen           | Hoover              | It Ends with Us                             |
+| Colleen           | Hoover              | Verity                                      |
+| Colleen           | Hoover              | It starts with Us                           |
+| Colleen           | Hoover              | November 9                                  |
+| Colleen           | Hoover              | All Your Perfects                           |
+| Colleen           | Hoover              | Too late                                    |
+| Colleen           | Hoover              | Confess                                     |
+| Colleen           | Hoover              | Never Never                                 |
+| Colleen           | Hoover              | Slammed                                     |
+| J.K.              | Rowling             | Harry Potter and the Philosopher's Stone    |
+| J.K.              | Rowling             | Harry Potter and the Chamber of Secrets     |
+| J.K.              | Rowling             | Harry Potter and the Prisoner of Azkaban    |
+| J.K.              | Rowling             | Harry Potter and the Goblet of Fire         |
+| J.K.              | Rowling             | Harry Potter and the Order of the Phoenix   |
+| J.K.              | Rowling             | Harry Potter and the Half-Blood Prince      |
+| J.K.              | Rowling             | Harry Potter and the Deathly Hallows        |
+| Agatha            | Christie            | Murder on the Orient Express                |
+| Agatha            | Christie            | The Mysterious Affair at Styles             |
+| Agatha            | Christie            | The ABC Murders                             |
+| Agatha            | Christie            | Death on the Nile                           |
+| Agatha            | Christie            | And Then There Were None                    |
+| Agatha            | Christie            | The Murder at the Vicarage                  |
+| Stephen           | King                | Carrie                                      |
+| Stephen           | King                | The Shining                                 |
+| Stephen           | King                | It                                          |
+| Stephen           | King                | Misery                                      |
+| Stephen           | King                | The Stand                                   |
+| Stephen           | King                | Pet Sematary                                |
+| Stephen           | King                | 11/22/63                                    |
+| Stephen           | King                | The Dark Tower: The Gunslinger              |
+| Stephen           | King                | Under the Dome                              |
+| Stephen           | King                | Doctor Sleep                                |
+| Chetan            | Bhagat              | Five Point Someone                          |
+| Chetan            | Bhagat              | One Night at the Call Center                |
+| Chetan            | Bhagat              | The 3 Mistakes of My Life                   |
+| Chetan            | Bhagat              | 2 States: The Story of My Marriage          |
+| Chetan            | Bhagat              | Revolution 2020: Love, Corruption, Ambition |
+| Chetan            | Bhagat              | What Young India Wants                      |
+| Chetan            | Bhagat              | Half Girlfriend                             |
+| Chetan            | Bhagat              | Making India Awesome                        |
+| Chetan            | Bhagat              | One Indian Girl                             |
+| Chetan            | Bhagat              | The Girl in Room 105                        |
++-------------------+---------------------+---------------------------------------------+
+43 rows in set (0.00 sec)
+
+mysql> Select * from BookInformation
+    -> ;
++-------------------+---------------------+---------------------------------------------+
+| Author_first_name | Author_surname_name | Book_name                                   |
++-------------------+---------------------+---------------------------------------------+
+| Colleen           | Hoover              | Ugly Love                                   |
+| Colleen           | Hoover              | It Ends with Us                             |
+| Colleen           | Hoover              | Verity                                      |
+| Colleen           | Hoover              | It starts with Us                           |
+| Colleen           | Hoover              | November 9                                  |
+| Colleen           | Hoover              | All Your Perfects                           |
+| Colleen           | Hoover              | Too late                                    |
+| Colleen           | Hoover              | Confess                                     |
+| Colleen           | Hoover              | Never Never                                 |
+| Colleen           | Hoover              | Slammed                                     |
+| J.K.              | Rowling             | Harry Potter and the Philosopher's Stone    |
+| J.K.              | Rowling             | Harry Potter and the Chamber of Secrets     |
+| J.K.              | Rowling             | Harry Potter and the Prisoner of Azkaban    |
+| J.K.              | Rowling             | Harry Potter and the Goblet of Fire         |
+| J.K.              | Rowling             | Harry Potter and the Order of the Phoenix   |
+| J.K.              | Rowling             | Harry Potter and the Half-Blood Prince      |
+| J.K.              | Rowling             | Harry Potter and the Deathly Hallows        |
+| Agatha            | Christie            | Murder on the Orient Express                |
+| Agatha            | Christie            | The Mysterious Affair at Styles             |
+| Agatha            | Christie            | The ABC Murders                             |
+| Agatha            | Christie            | Death on the Nile                           |
+| Agatha            | Christie            | And Then There Were None                    |
+| Agatha            | Christie            | The Murder at the Vicarage                  |
+| Stephen           | King                | Carrie                                      |
+| Stephen           | King                | The Shining                                 |
+| Stephen           | King                | It                                          |
+| Stephen           | King                | Misery                                      |
+| Stephen           | King                | The Stand                                   |
+| Stephen           | King                | Pet Sematary                                |
+| Stephen           | King                | 11/22/63                                    |
+| Stephen           | King                | The Dark Tower: The Gunslinger              |
+| Stephen           | King                | Under the Dome                              |
+| Stephen           | King                | Doctor Sleep                                |
+| Chetan            | Bhagat              | Five Point Someone                          |
+| Chetan            | Bhagat              | One Night at the Call Center                |
+| Chetan            | Bhagat              | The 3 Mistakes of My Life                   |
+| Chetan            | Bhagat              | 2 States: The Story of My Marriage          |
+| Chetan            | Bhagat              | Revolution 2020: Love, Corruption, Ambition |
+| Chetan            | Bhagat              | What Young India Wants                      |
+| Chetan            | Bhagat              | Half Girlfriend                             |
+| Chetan            | Bhagat              | Making India Awesome                        |
+| Chetan            | Bhagat              | One Indian Girl                             |
+| Chetan            | Bhagat              | The Girl in Room 105                        |
++-------------------+---------------------+---------------------------------------------+
+43 rows in set (0.00 sec)
+
+mysql> Select distinct(author) from BookInformation
+    -> ;
+ERROR 1054 (42S22): Unknown column 'author' in 'field list'
+mysql> Select distinct(author_first_name) from BookInformation
+    -> ;
++-------------------+
+| author_first_name |
++-------------------+
+| Colleen           |
+| J.K.              |
+| Agatha            |
+| Stephen           |
+| Chetan            |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Select count(distinct(author_first_name)) from BookInformation
+    -> ;
++------------------------------------+
+| count(distinct(author_first_name)) |
++------------------------------------+
+|                                  5 |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select * from BookInformation
+    -> order by Book_name;
++-------------------+---------------------+---------------------------------------------+
+| Author_first_name | Author_surname_name | Book_name                                   |
++-------------------+---------------------+---------------------------------------------+
+| Stephen           | King                | 11/22/63                                    |
+| Chetan            | Bhagat              | 2 States: The Story of My Marriage          |
+| Colleen           | Hoover              | All Your Perfects                           |
+| Agatha            | Christie            | And Then There Were None                    |
+| Stephen           | King                | Carrie                                      |
+| Colleen           | Hoover              | Confess                                     |
+| Agatha            | Christie            | Death on the Nile                           |
+| Stephen           | King                | Doctor Sleep                                |
+| Chetan            | Bhagat              | Five Point Someone                          |
+| Chetan            | Bhagat              | Half Girlfriend                             |
+| J.K.              | Rowling             | Harry Potter and the Chamber of Secrets     |
+| J.K.              | Rowling             | Harry Potter and the Deathly Hallows        |
+| J.K.              | Rowling             | Harry Potter and the Goblet of Fire         |
+| J.K.              | Rowling             | Harry Potter and the Half-Blood Prince      |
+| J.K.              | Rowling             | Harry Potter and the Order of the Phoenix   |
+| J.K.              | Rowling             | Harry Potter and the Philosopher's Stone    |
+| J.K.              | Rowling             | Harry Potter and the Prisoner of Azkaban    |
+| Stephen           | King                | It                                          |
+| Colleen           | Hoover              | It Ends with Us                             |
+| Colleen           | Hoover              | It starts with Us                           |
+| Chetan            | Bhagat              | Making India Awesome                        |
+| Stephen           | King                | Misery                                      |
+| Agatha            | Christie            | Murder on the Orient Express                |
+| Colleen           | Hoover              | Never Never                                 |
+| Colleen           | Hoover              | November 9                                  |
+| Chetan            | Bhagat              | One Indian Girl                             |
+| Chetan            | Bhagat              | One Night at the Call Center                |
+| Stephen           | King                | Pet Sematary                                |
+| Chetan            | Bhagat              | Revolution 2020: Love, Corruption, Ambition |
+| Colleen           | Hoover              | Slammed                                     |
+| Chetan            | Bhagat              | The 3 Mistakes of My Life                   |
+| Agatha            | Christie            | The ABC Murders                             |
+| Stephen           | King                | The Dark Tower: The Gunslinger              |
+| Chetan            | Bhagat              | The Girl in Room 105                        |
+| Agatha            | Christie            | The Murder at the Vicarage                  |
+| Agatha            | Christie            | The Mysterious Affair at Styles             |
+| Stephen           | King                | The Shining                                 |
+| Stephen           | King                | The Stand                                   |
+| Colleen           | Hoover              | Too late                                    |
+| Colleen           | Hoover              | Ugly Love                                   |
+| Stephen           | King                | Under the Dome                              |
+| Colleen           | Hoover              | Verity                                      |
+| Chetan            | Bhagat              | What Young India Wants                      |
++-------------------+---------------------+---------------------------------------------+
+43 rows in set (0.01 sec)
+
+mysql> Select sum(distinct(author_first_name)) from BookInformation
+    -> ;
++----------------------------------+
+| sum(distinct(author_first_name)) |
++----------------------------------+
+|                                0 |
++----------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_andp  |
++-----------------+
+| bookinformation |
+| category        |
+| cust            |
+| customers       |
+| dept            |
+| employee        |
+| manager         |
+| marksheet       |
+| product         |
+| productdata     |
+| project         |
+| sales           |
+| student         |
+| studentdb       |
+| studentinfo     |
++-----------------+
+15 rows in set (0.03 sec)
+
+mysql> select * from sales;
++---------+------------+---------------+------------+-------------+
+| sale_id | product_id | quantity_sold | sale_date  | total_price |
++---------+------------+---------------+------------+-------------+
+|       1 |          1 |             5 | 2024-01-02 |      100.80 |
+|       2 |          2 |             2 | 2024-02-01 |       78.60 |
+|       3 |          3 |             9 | 2024-02-08 |      100.80 |
+|       4 |          4 |            17 | 2024-04-19 |     1008.80 |
+|       5 |          5 |             9 | 2024-03-20 |       65.88 |
++---------+------------+---------------+------------+-------------+
+5 rows in set (0.02 sec)
+
+mysql> create table SALES PERSON
+    -> (
+    -> Sales_ID INT PRIMARY KEY,
+    -> Sales_Person_Name varchar(256),
+    -> Age int,
+    -> Sales_Amount bigint);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PERSON
+(
+Sales_ID INT PRIMARY KEY,
+Sales_Person_Name varchar(256),
+Age int,
+Sale' at line 1
+mysql> create table SALES_PERSON
+    -> (
+    -> Sales_ID INT PRIMARY KEY,
+    -> Sales_Person_Name varchar(256),
+    -> Age int,
+    -> Sales_Amount bigint);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (1, 'Amit Sharma', 30, 500000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (2, 'Priya Singh', 28, 400000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (3, 'Ravi Kumar', 35, 600000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (4, 'Neha Verma', 32, 700000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (5, 'Anil Mehta', 40, 800000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (5, 'Priya Singh', 28, 60000);
+ERROR 1062 (23000): Duplicate entry '5' for key 'sales_person.PRIMARY'
+mysql> INSERT INTO SALES_PERSON   VALUES (7, 'Neha Verma', 32, 24000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (6, 'Neha Verma', 32, 135000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (8, 'Priya Singh', 28, 30000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT Sales_Person_Name , sum(SALES_AMOUNT) from SALES_PERSON
+    -> group by AGE;
++-------------------+-------------------+
+| Sales_Person_Name | sum(SALES_AMOUNT) |
++-------------------+-------------------+
+| Amit Sharma       |            500000 |
+| Priya Singh       |            430000 |
+| Ravi Kumar        |            600000 |
+| Neha Verma        |            859000 |
+| Anil Mehta        |            800000 |
++-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Sales_Person_Name , avg(SALES_AMOUNT) from SALES_PERSON
+    -> group by AGE;
++-------------------+-------------------+
+| Sales_Person_Name | avg(SALES_AMOUNT) |
++-------------------+-------------------+
+| Amit Sharma       |       500000.0000 |
+| Priya Singh       |       215000.0000 |
+| Ravi Kumar        |       600000.0000 |
+| Neha Verma        |       286333.3333 |
+| Anil Mehta        |       800000.0000 |
++-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (9, 'Amit Sharma', 30, 124000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (10, 'Amit Sharma', 30, 670000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (11, 'Amit Sharma', 30, 530000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (12, 'Ravi Kumar', 35, 98000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (13, 'Ravi Kumar', 35, 3078600);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (14, 'Ravi Kumar', 35, 700890);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (15, 'Anil Mehta', 40, 600780);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (16, 'Anil Mehta', 40, 400220);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO SALES_PERSON   VALUES (17, 'Anil Mehta', 40, 50090);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT Sales_Person_Name , avg(SALES_AMOUNT) from SALES_PERSON
+    -> group by AGE;
++-------------------+-------------------+
+| Sales_Person_Name | avg(SALES_AMOUNT) |
++-------------------+-------------------+
+| Amit Sharma       |       456000.0000 |
+| Priya Singh       |       215000.0000 |
+| Ravi Kumar        |      1119372.5000 |
+| Neha Verma        |       286333.3333 |
+| Anil Mehta        |       462772.5000 |
++-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Sales_Person_Name , max(SALES_AMOUNT) from SALES_PERSON
+    -> group by AGE;
++-------------------+-------------------+
+| Sales_Person_Name | max(SALES_AMOUNT) |
++-------------------+-------------------+
+| Amit Sharma       |            670000 |
+| Priya Singh       |            400000 |
+| Ravi Kumar        |           3078600 |
+| Neha Verma        |            700000 |
+| Anil Mehta        |            800000 |
++-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * from SALES_PERSON
+    -> ;
++----------+-------------------+------+--------------+
+| Sales_ID | Sales_Person_Name | Age  | Sales_Amount |
++----------+-------------------+------+--------------+
+|        1 | Amit Sharma       |   30 |       500000 |
+|        2 | Priya Singh       |   28 |       400000 |
+|        3 | Ravi Kumar        |   35 |       600000 |
+|        4 | Neha Verma        |   32 |       700000 |
+|        5 | Anil Mehta        |   40 |       800000 |
+|        6 | Neha Verma        |   32 |       135000 |
+|        7 | Neha Verma        |   32 |        24000 |
+|        8 | Priya Singh       |   28 |        30000 |
+|        9 | Amit Sharma       |   30 |       124000 |
+|       10 | Amit Sharma       |   30 |       670000 |
+|       11 | Amit Sharma       |   30 |       530000 |
+|       12 | Ravi Kumar        |   35 |        98000 |
+|       13 | Ravi Kumar        |   35 |      3078600 |
+|       14 | Ravi Kumar        |   35 |       700890 |
+|       15 | Anil Mehta        |   40 |       600780 |
+|       16 | Anil Mehta        |   40 |       400220 |
+|       17 | Anil Mehta        |   40 |        50090 |
++----------+-------------------+------+--------------+
+17 rows in set (0.00 sec)
+
+mysql> SELECT max(sales_amount) from SALES_PERSON
+    -> ;
++-------------------+
+| max(sales_amount) |
++-------------------+
+|           3078600 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Sales_Person_Name ,SALES_AMOUNT from SALES_PERSON group by age;
++-------------------+--------------+
+| Sales_Person_Name | SALES_AMOUNT |
++-------------------+--------------+
+| Amit Sharma       |       500000 |
+| Priya Singh       |       400000 |
+| Ravi Kumar        |       600000 |
+| Neha Verma        |       700000 |
+| Anil Mehta        |       800000 |
++-------------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Sales_Person_Name ,SALES_AMOUNT from SALES_PERSON order by age;
++-------------------+--------------+
+| Sales_Person_Name | SALES_AMOUNT |
++-------------------+--------------+
+| Priya Singh       |       400000 |
+| Priya Singh       |        30000 |
+| Amit Sharma       |       500000 |
+| Amit Sharma       |       124000 |
+| Amit Sharma       |       670000 |
+| Amit Sharma       |       530000 |
+| Neha Verma        |       700000 |
+| Neha Verma        |       135000 |
+| Neha Verma        |        24000 |
+| Ravi Kumar        |       600000 |
+| Ravi Kumar        |        98000 |
+| Ravi Kumar        |      3078600 |
+| Ravi Kumar        |       700890 |
+| Anil Mehta        |       800000 |
+| Anil Mehta        |       600780 |
+| Anil Mehta        |       400220 |
+| Anil Mehta        |        50090 |
++-------------------+--------------+
+17 rows in set (0.00 sec)
+
+mysql> Create table student_score
+    -> (
+    -> Student_ID IN PRIMARY KEY,
+    -> Student_Name VArchar(256),
+    -> Percentage int,
+    -> Grade varchar(256)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IN PRIMARY KEY,
+Student_Name VArchar(256),
+Percentage int,
+Grade varchar(256)
+)' at line 3
+mysql> Create table student_score
+    -> (
+    -> Student_ID INt PRIMARY KEY,
+    -> Student_Name VArchar(256),
+    -> Percentage int,
+    -> Grade varchar(256)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into student_score
+    ->  VALUES (1, 'Ramesh Kumar', 85, 'A'), (2, 'Priya Singh', 78, 'B'), (3, 'Suresh Verma', 90, 'A'), (4, 'Anita Sharma', 70, 'B'), (5, 'Rajesh Gupta', 60, 'C');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO student_score
+    -> VALUES
+    -> (6, 'Amit Patel', 92, 'A+'),
+    -> (7, 'Deepika Jain', 80, 'A-'),
+    -> (8, 'Sanjay Singh', 75, 'B+'),
+    -> (9, 'Ananya Mishra', 88, 'A'),
+    -> (10, 'Vikram Pandey', 65, 'C');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>  select * from student_score;
++------------+---------------+------------+-------+
+| Student_ID | Student_Name  | Percentage | Grade |
++------------+---------------+------------+-------+
+|          1 | Ramesh Kumar  |         85 | A     |
+|          2 | Priya Singh   |         78 | B     |
+|          3 | Suresh Verma  |         90 | A     |
+|          4 | Anita Sharma  |         70 | B     |
+|          5 | Rajesh Gupta  |         60 | C     |
+|          6 | Amit Patel    |         92 | A+    |
+|          7 | Deepika Jain  |         80 | A-    |
+|          8 | Sanjay Singh  |         75 | B+    |
+|          9 | Ananya Mishra |         88 | A     |
+|         10 | Vikram Pandey |         65 | C     |
++------------+---------------+------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> update table student_score
+    -> set Grade="A"; where Student_ID=6
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student_score
+set Grade="A"' at line 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where Student_ID=6' at line 1
+mysql> update table student_score
+    -> set Grade="A" where Student_ID=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student_score
+set Grade="A" where Student_ID=6' at line 1
+mysql> update student_score
+    -> set Grade="A" where Student_ID=6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update table student_score
+    -> set Grade="B" where Student_ID=8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student_score
+set Grade="B" where Student_ID=8' at line 1
+mysql> update table student_score
+    -> set Grade="B" where Student_ID=8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student_score
+set Grade="B" where Student_ID=8' at line 1
+mysql> update student_score
+    -> set Grade="B" where Student_ID=8;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update table student_score
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student_score' at line 1
+mysql> update student_score
+    -> set Grade="A" where Student_ID=7;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  select * from student_score;
++------------+---------------+------------+-------+
+| Student_ID | Student_Name  | Percentage | Grade |
++------------+---------------+------------+-------+
+|          1 | Ramesh Kumar  |         85 | A     |
+|          2 | Priya Singh   |         78 | B     |
+|          3 | Suresh Verma  |         90 | A     |
+|          4 | Anita Sharma  |         70 | B     |
+|          5 | Rajesh Gupta  |         60 | C     |
+|          6 | Amit Patel    |         92 | A     |
+|          7 | Deepika Jain  |         80 | A     |
+|          8 | Sanjay Singh  |         75 | B     |
+|          9 | Ananya Mishra |         88 | A     |
+|         10 | Vikram Pandey |         65 | C     |
++------------+---------------+------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_score
+    -> VALUES
+    -> (11, 'Mona Lisa', 34, 'D'),
+    -> (12, 'Harry Styles', 32, 'D'),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> INSERT INTO student_score
+    -> VALUES
+    -> (11, 'Mona Lisa', 34, 'D'),
+    -> (12, 'Harry Styles', 32, 'D');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT grade, count(Student_ID)
+    -> from student_score
+    -> group by grade;
++-------+-------------------+
+| grade | count(Student_ID) |
++-------+-------------------+
+| A     |                 5 |
+| B     |                 3 |
+| C     |                 2 |
+| D     |                 2 |
++-------+-------------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT grade, count(Student_ID)
+    -> from student_score
+    -> order by grade;
++-------+-------------------+
+| grade | count(Student_ID) |
++-------+-------------------+
+| A     |                12 |
++-------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT grade, count(Student_ID)
+    -> from student_score
+    -> order by percentage;
++-------+-------------------+
+| grade | count(Student_ID) |
++-------+-------------------+
+| A     |                12 |
++-------+-------------------+
+1 row in set (0.00 sec)
+
+mysql>  select * from student_score;
++------------+---------------+------------+-------+
+| Student_ID | Student_Name  | Percentage | Grade |
++------------+---------------+------------+-------+
+|          1 | Ramesh Kumar  |         85 | A     |
+|          2 | Priya Singh   |         78 | B     |
+|          3 | Suresh Verma  |         90 | A     |
+|          4 | Anita Sharma  |         70 | B     |
+|          5 | Rajesh Gupta  |         60 | C     |
+|          6 | Amit Patel    |         92 | A     |
+|          7 | Deepika Jain  |         80 | A     |
+|          8 | Sanjay Singh  |         75 | B     |
+|          9 | Ananya Mishra |         88 | A     |
+|         10 | Vikram Pandey |         65 | C     |
+|         11 | Mona Lisa     |         34 | D     |
+|         12 | Harry Styles  |         32 | D     |
++------------+---------------+------------+-------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT grade, count(Student_ID)
+    -> from student_score
+    -> group by percentage;
++-------+-------------------+
+| grade | count(Student_ID) |
++-------+-------------------+
+| A     |                 1 |
+| B     |                 1 |
+| A     |                 1 |
+| B     |                 1 |
+| C     |                 1 |
+| A     |                 1 |
+| A     |                 1 |
+| B     |                 1 |
+| A     |                 1 |
+| C     |                 1 |
+| D     |                 1 |
+| D     |                 1 |
++-------+-------------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT grade, count(Student_ID)
+    -> from student_score
+    -> order by percentage;
++-------+-------------------+
+| grade | count(Student_ID) |
++-------+-------------------+
+| A     |                12 |
++-------+-------------------+
+1 row in set (0.00 sec)
+
+mysql>
