@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -14,6 +14,26 @@ def index():
 def success(score):
     return "The person has passed and the score is " + str(score)
 
-# Run the app if this script is executed directly
+@app.route("/fail/<int:score>")
+def fail(score):
+    return "The person has failed and the score is " + str(score)
+
+@app.route('/form', methods=["GET", "POST"])
+def form():
+    if request.method == "GET":
+        return render_template("form.html")
+    else:
+        maths = float(request.form["maths"])
+        science = float(request.form["science"])
+        history = float(request.form["history"])
+        average_marks = (maths + science + history) / 3.0
+        res=""
+        if average_marks>=50:
+            res="success"
+        else:
+            res="fail"
+
+        return redirect(url_for(res, score=average_marks))
+
 if __name__ == "__main__":
     app.run(debug=True)
