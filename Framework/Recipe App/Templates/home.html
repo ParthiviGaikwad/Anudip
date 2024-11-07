@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">THISISASHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Promo Banner using Carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/kit.jpg') }}" class="d-block w-100" alt="Promo Banner">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Home-made Recipies</h2>
+                <p>Detailes home recipies</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+<!-- Categories Section -->
+<div class="container text-center my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/cookies">
+                <img src="{{ url_for('static', filename='images/cookies.jpg') }}" class="img-fluid" alt="Cookies">
+                <h5 class="mt-2">Cookies</h5>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/cakes">
+                <img src="{{ url_for('static', filename='images/cake.jpg') }}" class="img-fluid" alt="Cakes">
+                <h5 class="mt-2">Cakes</h5>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/pasta">
+                <img src="{{ url_for('static', filename='images/pasta.jpg') }}" class="img-fluid" alt="Pasta" style="max-width: 500px; height: auto;">
+                <h5 class="mt-2">Pasta</h5>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/bread">
+                <img src="{{ url_for('static', filename='images/bread.jpg') }}" class="img-fluid" alt="Bread">
+                <h5 class="mt-2">Bread</h5>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/salad">
+                <img src="{{ url_for('static', filename='images/salad.jpg') }}" class="img-fluid" alt="Salad">
+                <h5 class="mt-2">Salad</h5>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/sandwich">
+                <img src="{{ url_for('static', filename='images/sandwich.jpg') }}" class="img-fluid" alt="Sandwich" style="max-width: 500px; height: auto;">
+                <h5 class="mt-2">Sandwich</h5>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>  

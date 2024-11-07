@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco-chip Cookie Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">THISISASHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Promo Banner using Carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/cookiesbg.jpg') }}" class="d-block w-100" alt="Promo Banner">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Choco-chip Cookies</h2>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recipe Section -->
+<div class="container my-5">
+    <h1>Chocolate Chip Cookie Recipe</h1>
+    <h3>Ingredients</h3>
+    <ul>
+        <li>2 1/4 cups all-purpose flour</li>
+        <li>1/2 teaspoon baking soda</li>
+        <li>1 cup unsalted butter, at room temperature</li>
+        <li>1/2 cup granulated sugar</li>
+        <li>1 cup packed brown sugar</li>
+        <li>1 teaspoon salt</li>
+        <li>2 teaspoons pure vanilla extract</li>
+        <li>2 large eggs</li>
+        <li>2 cups semi-sweet chocolate chips</li>
+        <li>1 cup chopped nuts (optional)</li>
+    </ul>
+
+    <h3>Instructions</h3>
+    <ol>
+        <li><strong>Preheat the Oven:</strong> Preheat your oven to 375°F (190°C).</li>
+        <li><strong>Mix Dry Ingredients:</strong> In a small bowl, combine the flour and baking soda. Set aside.</li>
+        <li><strong>Cream Butter and Sugars:</strong> In a large bowl, beat together the butter, granulated sugar, brown sugar, and salt until the mixture is light and fluffy (about 2 minutes).</li>
+        <li><strong>Add Eggs and Vanilla:</strong> Add the eggs one at a time, beating well after each addition. Then mix in the vanilla extract.</li>
+        <li><strong>Combine Dry Ingredients:</strong> Gradually add the flour mixture to the wet ingredients, mixing until just combined.</li>
+        <li><strong>Add Chocolate Chips:</strong> Stir in the chocolate chips and, if desired, the chopped nuts.</li>
+        <li><strong>Scoop the Dough:</strong> Drop rounded tablespoons of dough onto ungreased baking sheets, leaving space between each cookie to allow for spreading.</li>
+        <li><strong>Bake:</strong> Bake in the preheated oven for 9 to 11 minutes, or until the cookies are golden brown around the edges but still soft in the center.</li>
+        <li><strong>Cool:</strong> Remove from the oven and let cool on the baking sheet for about 5 minutes before transferring to wire racks to cool completely.</li>
+        <li><strong>Enjoy:</strong> Serve warm or store in an airtight container for later!</li>
+    </ol>
+</div>
+
+
+<!-- Centered Back Button -->
+<div class="text-center mt-5">
+    <a class="btn btn-primary" href="{{ url_for('home') }}" role="button">Back</a>
+</div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

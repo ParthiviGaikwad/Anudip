@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponge Cake Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">THISISASHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Promo Banner using Carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/cakesbg.jpg') }}" class="d-block w-100" alt="Promo Banner">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Sponge Cake</h2>
+                <p>Light and fluffy sponge cake recipe.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recipe Section -->
+<div class="container my-5">
+    <h1>Delicious Sponge Cake Recipe</h1>
+    <h3>Ingredients</h3>
+    <ul>
+        <li>1 cup all-purpose flour</li>
+        <li>1 cup granulated sugar</li>
+        <li>4 large eggs</li>
+        <li>1/2 cup unsalted butter, melted</li>
+        <li>1 teaspoon vanilla extract</li>
+        <li>1 teaspoon baking powder</li>
+        <li>1/4 teaspoon salt</li>
+        <li>1/4 cup milk</li>
+    </ul>
+
+    <h3>Instructions</h3>
+    <ol>
+        <li><strong>Preheat the Oven:</strong> Preheat your oven to 350°F (175°C). Grease and flour a 9-inch round cake pan.</li>
+        <li><strong>Beat the Eggs:</strong> In a large bowl, beat the eggs and sugar together using an electric mixer until light and fluffy, about 5-7 minutes.</li>
+        <li><strong>Add Vanilla:</strong> Mix in the vanilla extract.</li>
+        <li><strong>Combine Dry Ingredients:</strong> In a separate bowl, whisk together the flour, baking powder, and salt.</li>
+        <li><strong>Combine Mixtures:</strong> Gradually fold the dry ingredients into the egg mixture until just combined.</li>
+        <li><strong>Add Butter and Milk:</strong> Gently fold in the melted butter and milk until the batter is smooth.</li>
+        <li><strong>Bake:</strong> Pour the batter into the prepared cake pan and bake for 25-30 minutes, or until a toothpick inserted in the center comes out clean.</li>
+        <li><strong>Cool:</strong> Allow the cake to cool in the pan for 10 minutes before transferring it to a wire rack to cool completely.</li>
+        <li><strong>Serve:</strong> Enjoy plain or with your favorite frosting or fruit!</li>
+    </ol>
+
+    <!-- Centered Back Button -->
+    <div class="text-center mt-5">
+        <a class="btn btn-primary" href="{{ url_for('home') }}" role="button">Back</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

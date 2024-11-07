@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Sauce Pasta Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">THISISASHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Promo Banner using Carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/pastabg.jpg') }}" class="d-block w-100" alt="Promo Banner">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>White Sauce Pasta</h2>
+                <p>Rich and creamy pasta with a classic white sauce.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recipe Section -->
+<div class="container my-5">
+    <h1>Delicious White Sauce Pasta Recipe</h1>
+    <h3>Ingredients</h3>
+    <ul>
+        <li>200g pasta (penne or your choice)</li>
+        <li>2 tablespoons butter</li>
+        <li>2 tablespoons all-purpose flour</li>
+        <li>1.5 cups milk</li>
+        <li>1/4 cup grated cheese (optional)</li>
+        <li>1/2 teaspoon black pepper powder</li>
+        <li>Salt to taste</li>
+        <li>1/2 teaspoon Italian seasoning</li>
+        <li>1/2 cup mixed vegetables (bell peppers, corn, carrots, etc.)</li>
+        <li>1 tablespoon olive oil</li>
+    </ul>
+
+    <h3>Instructions</h3>
+    <ol>
+        <li><strong>Cook the Pasta:</strong> Boil the pasta in salted water as per the package instructions. Drain and set aside.</li>
+        <li><strong>Sauté Vegetables:</strong> In a pan, heat olive oil and sauté the mixed vegetables until they are slightly tender. Set aside.</li>
+        <li><strong>Make the White Sauce:</strong> In a separate pan, melt butter on low heat. Add flour and stir continuously for 1-2 minutes until it turns light golden.</li>
+        <li><strong>Add Milk:</strong> Gradually add milk to the pan, stirring constantly to avoid lumps. Continue stirring until the sauce thickens.</li>
+        <li><strong>Season the Sauce:</strong> Add black pepper, salt, and Italian seasoning to the sauce. If using, stir in the grated cheese until it melts.</li>
+        <li><strong>Combine Pasta and Sauce:</strong> Add the cooked pasta and sautéed vegetables to the sauce. Mix well to coat everything evenly.</li>
+        <li><strong>Serve:</strong> Garnish with a sprinkle of cheese or herbs and serve hot.</li>
+    </ol>
+
+    <!-- Centered Back Button -->
+    <div class="text-center mt-5">
+        <a class="btn btn-primary" href="{{ url_for('home') }}" role="button">Back</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
